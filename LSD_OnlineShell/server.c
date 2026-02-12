@@ -61,7 +61,7 @@ int main(int argc, char *argv[]) {
             continue; 
         }
 
-        if(pid == 0) { // CHILD: handle this client
+        if(pid == 0) { 
             close(serverSocket); // child doesn’t need the listening socket
             char buffer[BUFFER_SIZE];
 
@@ -86,7 +86,7 @@ int main(int argc, char *argv[]) {
                     continue; 
                 }
 
-                if(cmdPid == 0) { // CHILD OF CHILD: executes command
+                if(cmdPid == 0) { //Grandchild executes command
                     // redirect stdout and stderr to socket
                     dup2(clientSocket, STDOUT_FILENO);
                     dup2(clientSocket, STDERR_FILENO);
@@ -116,7 +116,7 @@ int main(int argc, char *argv[]) {
 
             close(clientSocket);
             exit(0);
-        } else { // PARENT: back to listening for new clients
+        } else { // Keep listening for new clients
             close(clientSocket);
         }
     }

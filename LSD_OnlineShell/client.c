@@ -60,7 +60,6 @@ int main(int argc, char *argv[]) {
             break;
         
         // send command to server
-        printf("DEBUG: Sending command: '%s'\n", buffer);
         send(currSocket, buffer, strlen(buffer), 0);
 
         memset(buffer, 0, BUFFER_SIZE);
