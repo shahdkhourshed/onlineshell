@@ -58,11 +58,13 @@ int main(int argc, char *argv[]) {
         //check for quit command
         if (strncmp(buffer, "quit", 4) == 0)
             break;
-
+        
         // send command to server
+        printf("DEBUG: Sending command: '%s'\n", buffer);
         send(currSocket, buffer, strlen(buffer), 0);
 
         memset(buffer, 0, BUFFER_SIZE);
+        //HANGING HERE
         recv(currSocket, buffer, BUFFER_SIZE, 0); // read data from server
 
         // display output
